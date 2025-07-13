@@ -1,5 +1,6 @@
 import './App.css';
 import { Component } from 'react';
+import MainPage from './pages/MainPage';
 
 class App extends Component {
   state = { data: [] };
@@ -14,7 +15,7 @@ class App extends Component {
   };
 
   render() {
-    return <h1>Hello, World!</h1>;
+    return <MainPage />;
   }
 }
 
