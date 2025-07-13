@@ -5,7 +5,7 @@ import MainPage from './pages/MainPage';
 class App extends Component {
   state = { data: [] };
 
-  getData = (query: string) => {
+  getData = () => {
     this.setState({
       data: [
         { name: 'Blabla', description: '123' },
@@ -15,7 +15,7 @@ class App extends Component {
   };
 
   render() {
-    return <MainPage />;
+    return <MainPage searchElements={() => {}} />;
   }
 }
 
