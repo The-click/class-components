@@ -1,5 +1,4 @@
 import Header from '@/components/shared/header/Header';
-import Card from '@/components/ui/Card/Card';
 import CardList from '@/components/ui/CardList/CardList';
 import { Component } from 'react';
 

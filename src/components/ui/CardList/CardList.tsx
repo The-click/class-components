@@ -12,7 +12,7 @@ class CardList extends Component<CardListProps> {
       <div className={`flow-root ${this.props.className}`}>
         <dl className="-my-3 divide-y divide-gray-200 text-sm dark:divide-gray-700">
           {this.props.data.map((cardData) => (
-            <Card data={cardData} />
+            <Card key={cardData.name} data={cardData} />
           ))}
         </dl>
       </div>
