@@ -1,5 +1,5 @@
 import Header from '@/components/shared/header/Header';
-import CardList from '@/components/ui/CardList/CardList';
+import Main from '@/components/shared/main/Main';
 import { Component } from 'react';
 
 interface MainPageProps {
@@ -11,8 +11,7 @@ class MainPage extends Component<MainPageProps> {
     return (
       <div className="w-140">
         <Header searchElements={this.props.searchElements} />
-        <CardList
-          className="w-200"
+        <Main
           data={[
             {
               description:

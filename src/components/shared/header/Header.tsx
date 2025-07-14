@@ -21,10 +21,10 @@ class Header extends Component<HeaderProps> {
 
   render() {
     return (
-      <div className="mt-2 flex items-center gap-x-3">
+      <header className="mt-2 flex items-center gap-x-3">
         <Input value={this.state.searchValue} onChage={this.onChange} />
         <Button onClick={this.handlerSearchButton}>Найти</Button>
-      </div>
+      </header>
     );
   }
 }

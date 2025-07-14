@@ -1,6 +1,7 @@
 import './App.css';
 import { Component } from 'react';
 import MainPage from './pages/MainPage';
+import { AppStore } from './store/AppStore';
 
 class App extends Component {
   state = { data: [] };
@@ -12,7 +13,13 @@ class App extends Component {
         { name: 'Qas', description: 'Zxc' },
       ],
     });
+
+    console.log(AppStore.getData(''));
   };
+
+  componentDidMount(): void {
+    console.log(AppStore.getData(''));
+  }
 
   render() {
     return <MainPage searchElements={() => {}} />;
