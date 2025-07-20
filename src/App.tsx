@@ -1,28 +1,15 @@
 import './App.css';
 import { Component } from 'react';
 import MainPage from './pages/MainPage';
-import { AppStore } from './store/AppStore';
+import ErrorBoundary from './components/shared/error/ErrorBoundary';
 
 class App extends Component {
-  state = { data: [] };
-
-  getData = () => {
-    this.setState({
-      data: [
-        { name: 'Blabla', description: '123' },
-        { name: 'Qas', description: 'Zxc' },
-      ],
-    });
-
-    console.log(AppStore.getData(''));
-  };
-
-  componentDidMount(): void {
-    console.log(AppStore.getData(''));
-  }
-
   render() {
-    return <MainPage searchElements={() => {}} />;
+    return (
+      <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+        <MainPage />
+      </ErrorBoundary>
+    );
   }
 }
 

@@ -8,7 +8,9 @@ interface CardProps extends UIProps {
 class Card extends Component<CardProps> {
   render() {
     return (
-      <div className="grid grid-cols-4 gap-1 py-5 divide-x-2 divide-gray-300">
+      <div
+        className={`grid grid-cols-4 gap-1 py-5 divide-x-2 divide-gray-300 ${this.props.className}`}
+      >
         <dt className="font-medium col-span-1 px-1 text-gray-900 dark:text-white font-semibold text-pretty">
           <span className="line-clamp-1">{this.props.data.name}</span>
         </dt>

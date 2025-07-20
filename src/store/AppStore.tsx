@@ -1,31 +1,40 @@
-import { processPokemon, processPokemonList } from '@/utils/ParseData';
+import Api, { type ApiAnswer } from '@/utils/Api';
+import AppLocalStorage from './AppLocalStorage';
 
-export class AppStore {
-  URL_PATH = 'https://pokeapi.co/api/v2/pokemon';
+class AppStore {
+  private static instance: undefined | AppStore;
 
-  getData = async (query: string) => {
-    const url = new URL(`${this.URL_PATH}${query ? '/' + query : ''}`);
-    url.searchParams.append('limit', '10');
-    url.searchParams.append('offset', '0');
-
-    try {
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-
-      const json = await response.json();
-
-      if (query) {
-        return processPokemon(json);
-      } else {
-        return processPokemonList(json);
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(error.message);
-      }
+  constructor() {
+    if (AppStore.instance) {
+      return AppStore.instance;
     }
+
+    AppStore.instance = this;
+
+    return this;
+  }
+
+  getData = async (query: string): Promise<ApiAnswer> => {
+    const processedQuery = query.trim();
+    const result = processedQuery
+      ? await Api.getData(processedQuery)
+      : await Api.getAllData();
+
+    if (result.data) {
+      AppLocalStorage.saveQuery(processedQuery);
+    }
+
+    return result;
+  };
+
+  getInitData = async (): Promise<ApiAnswer> => {
+    const processedQuery = AppLocalStorage.getQuery();
+    const result = processedQuery
+      ? await Api.getData(processedQuery)
+      : await Api.getAllData();
+
+    return result;
   };
 }
+
+export default new AppStore();
